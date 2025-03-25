@@ -497,6 +497,7 @@ set(LLVM_ALL_TARGETS
   SystemZ
   VE
   WebAssembly
+  X43
   X86
   XCore
   )

@@ -80,6 +80,7 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
   case ve:             return "ve";
   case wasm32:         return "wasm32";
   case wasm64:         return "wasm64";
+  case x43:            return "x43";
   case x86:            return "i386";
   case x86_64:         return "x86_64";
   case xcore:          return "xcore";
@@ -207,6 +208,8 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
   case sparc:       return "sparc";
 
   case systemz:     return "s390";
+
+  case x43:         return "x43";
 
   case x86:
   case x86_64:      return "x86";
@@ -458,6 +461,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
     .Case("tcele", tcele)
     .Case("thumb", thumb)
     .Case("thumbeb", thumbeb)
+    .Case("x43", x43)
     .Case("x86", x86)
     .Case("i386", x86)
     .Case("x86-64", x86_64)
@@ -557,6 +561,7 @@ static Triple::ArchType parseARMArch(StringRef ArchName) {
 static Triple::ArchType parseArch(StringRef ArchName) {
   auto AT =
       StringSwitch<Triple::ArchType>(ArchName)
+          .Case("x43", Triple::x43)
           .Cases("i386", "i486", "i586", "i686", Triple::x86)
           // FIXME: Do we need to support these?
           .Cases("i786", "i886", "i986", Triple::x86)
@@ -959,6 +964,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::r600:
   case Triple::renderscript32:
   case Triple::renderscript64:
+  case Triple::x43:
   case Triple::riscv32:
   case Triple::riscv64:
   case Triple::shave:
@@ -1684,6 +1690,7 @@ unsigned Triple::getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
     return 32;
 
   case llvm::Triple::aarch64:
+  case llvm::Triple::x43:
   case llvm::Triple::aarch64_be:
   case llvm::Triple::amdgcn:
   case llvm::Triple::amdil64:
@@ -1754,6 +1761,7 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::msp430:
   case Triple::systemz:
   case Triple::ve:
+  case Triple::x43:
     T.setArch(UnknownArch);
     break;
 
@@ -1867,6 +1875,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::ve:
   case Triple::wasm64:
   case Triple::x86_64:
+  case Triple::x43:
     // Already 64-bit.
     break;
 
@@ -1935,6 +1944,7 @@ Triple Triple::getBigEndianArchVariant() const {
   case Triple::spirv64:
   case Triple::wasm32:
   case Triple::wasm64:
+  case Triple::x43:
   case Triple::x86:
   case Triple::x86_64:
   case Triple::xcore:
@@ -2035,6 +2045,7 @@ bool Triple::isLittleEndian() const {
   case Triple::riscv32:
   case Triple::riscv64:
   case Triple::shave:
+  case Triple::x43:
   case Triple::sparcel:
   case Triple::spir64:
   case Triple::spir:
