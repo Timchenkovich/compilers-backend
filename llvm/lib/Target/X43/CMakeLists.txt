@@ -8,7 +8,7 @@ add_llvm_component_group(X43)
    Core
    Support
    Target
-   SimInfo
+   X43Info
  
    ADD_TO_COMPONENT
    X43

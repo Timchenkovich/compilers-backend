@@ -1,4 +1,4 @@
-add_llvm_component_library(LLVMSimDesc
+add_llvm_component_library(LLVMX43Desc
    X43MCTargetDesc.cpp
  
    LINK_COMPONENTS

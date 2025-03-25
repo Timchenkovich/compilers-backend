@@ -1,6 +1,5 @@
 #include "X43TargetMachine.h"
 #include "TargetInfo/X43TargetInfo.h"
-#include "X43.h"
 #include "llvm/MC/TargetRegistry.h"
 #include <optional>
 
@@ -8,7 +7,6 @@ using namespace llvm;
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeX43Target() {
   // Register the target.
-  X43_DUMP_CYAN
   RegisterTargetMachine<X43TargetMachine> A(getTheX43Target());
 }
 
@@ -21,5 +19,4 @@ X43TargetMachine::X43TargetMachine(const Target &T, const Triple &TT,
     : CodeGenTargetMachineImpl(
           T, "e-m:e-p:32:32-i8:8:32-i16:16:32-i64:64-n32", TT, CPU, FS, Options,
           Reloc::Static, getEffectiveCodeModel(CM, CodeModel::Small), OL) {
-  X43_DUMP_CYAN
 }
