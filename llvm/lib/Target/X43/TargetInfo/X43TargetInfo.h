@@ -1,0 +1,12 @@
+#ifndef LLVM_LIB_TARGET_X43_TARGETINFO_X43TARGETINFO_H
+#define LLVM_LIB_TARGET_X43_TARGETINFO_X43TARGETINFO_H
+
+namespace llvm {
+
+class Target;
+
+Target &getTheX43Target();
+
+} // end namespace llvm
+
+#endif // LLVM_LIB_TARGET_X43_TARGETINFO_X43TARGETINFO_H
