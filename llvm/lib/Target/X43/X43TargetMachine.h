@@ -1,6 +1,7 @@
 #pragma once
 
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
+#include "llvm/CodeGen/TargetPassConfig.h"
 #include <optional>
 
 namespace llvm {
@@ -13,5 +14,7 @@ public:
                    std::optional<Reloc::Model> RM,
                    std::optional<CodeModel::Model> CM, CodeGenOptLevel OL,
                    bool JIT);
+  TargetPassConfig *createPassConfig(PassManagerBase &PM) override;
 };
+
 } // end namespace llvm
