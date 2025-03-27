@@ -1,5 +1,4 @@
-#ifndef LLVM_LIB_TARGET_X43_X43TARGETMACHINE_H
-#define LLVM_LIB_TARGET_X43_X43TARGETMACHINE_H
+#pragma once
 
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
@@ -16,5 +15,3 @@ public:
                    bool JIT);
 };
 } // end namespace llvm
-
-#endif // LLVM_LIB_TARGET_X43_X43TARGETMACHINE_H

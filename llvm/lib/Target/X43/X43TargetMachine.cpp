@@ -17,7 +17,7 @@ X43TargetMachine::X43TargetMachine(const Target &T, const Triple &TT,
                                    std::optional<CodeModel::Model> CM,
                                    CodeGenOptLevel OL, bool JIT)
     : CodeGenTargetMachineImpl(
-          T, "e-m:e-p:32:32-i8:8:32-i16:16:32-i64:64-n32", TT, CPU, FS, Options,
+          T, "e-m:e-p:64:64-i8:8:8-i16:16-i64:64-n64", TT, CPU, FS, Options,
           Reloc::Static, getEffectiveCodeModel(CM, CodeModel::Small), OL) {
   initAsmInfo();
 }
