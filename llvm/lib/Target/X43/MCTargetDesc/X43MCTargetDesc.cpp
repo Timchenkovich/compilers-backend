@@ -1,3 +1,4 @@
+#include "X43MCTargetDesc.h"
 #include "TargetInfo/X43TargetInfo.h"
 #include "X43InstPrinter.h"
 #include "X43MCAsmInfo.h"
@@ -11,7 +12,6 @@
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/raw_ostream.h"
 
-#define GET_REGINFO_ENUM
 #define GET_REGINFO_MC_DESC
 #include "X43GenRegisterInfo.inc"
 

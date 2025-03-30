@@ -21,6 +21,7 @@ add_public_tablegen_target(X43CommonTableGen)
    X43ISelLowering.cpp
    X43FrameLowering.cpp
    X43MCInstLower.cpp
+   X43ISelDagToDag.cpp
   
    LINK_COMPONENTS
    CodeGen

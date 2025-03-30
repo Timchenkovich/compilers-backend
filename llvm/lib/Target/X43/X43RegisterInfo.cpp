@@ -1,4 +1,5 @@
 #include "X43RegisterInfo.h"
+#include "MCTargetDesc/X43MCTargetDesc.h"
 #include "X43FrameLowering.h"
 #include "llvm/ADT/BitVector.h"
 #include "llvm/CodeGen/MachineFunction.h"

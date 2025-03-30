@@ -1,5 +1,6 @@
 #include "X43ISelLowering.h"
 
+#include "MCTargetDesc/X43MCTargetDesc.h"
 #include "X43RegisterInfo.h"
 #include "X43Subtarget.h"
 #include "llvm/CodeGen/CallingConvLower.h"

@@ -1,6 +1,5 @@
 #pragma once
 
-#define GET_REGINFO_ENUM
 #define GET_REGINFO_HEADER
 #include "X43GenRegisterInfo.inc"
 

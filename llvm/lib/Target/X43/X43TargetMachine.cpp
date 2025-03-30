@@ -1,5 +1,6 @@
 #include "X43TargetMachine.h"
 #include "TargetInfo/X43TargetInfo.h"
+#include "X43.h"
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/CodeGen/TargetPassConfig.h"
 #include "llvm/MC/TargetRegistry.h"
@@ -12,7 +13,14 @@ class X43PassConfig : public TargetPassConfig {
 public:
   using TargetPassConfig::TargetPassConfig;
 
-  bool addInstSelector() override { return false; }
+  bool addInstSelector() override {
+    addPass(createX43ISelDag(getX43TargetMachine(), getOptLevel()));
+    return false;
+  }
+
+  X43TargetMachine &getX43TargetMachine() const {
+    return getTM<X43TargetMachine>();
+  }
 };
 } // namespace
 
