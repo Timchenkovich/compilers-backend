@@ -1,5 +1,6 @@
 #include "X43MCTargetDesc.h"
 #include "TargetInfo/X43TargetInfo.h"
+#include "X43Info.h"
 #include "X43InstPrinter.h"
 #include "X43MCAsmInfo.h"
 #include "llvm/CodeGen/TargetRegisterInfo.h"

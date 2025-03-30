@@ -33,6 +33,7 @@ X43TargetLowering::X43TargetLowering(const TargetMachine &TM,
   setOperationAction(ISD::STORE, MVT::i64, Legal);
 
   setOperationAction(ISD::Constant, MVT::i64, Legal);
+  setOperationAction(ISD::Constant, MVT::i64, Legal);
 }
 
 SDValue
