@@ -11,7 +11,7 @@ class X43Inst<dag outs, dag ins, string asmstr, list<dag> pattern> : Instruction
 }
 
 
-class X43NoOp<bits<8> op, dag outs, dag ins, string asmstr, list<dag> pattern> : X43Inst<outs, ins, asmstr, pattern> {
+class X43Short<bits<8> op, dag outs, dag ins, string asmstr, list<dag> pattern> : X43Inst<outs, ins, asmstr, pattern> {
     field bits<8> Inst;
     let Inst{7...0} = op;
 }

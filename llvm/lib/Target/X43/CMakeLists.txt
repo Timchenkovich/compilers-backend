@@ -5,6 +5,9 @@ set(LLVM_TARGET_DEFINITIONS X43.td)
 tablegen(LLVM X43GenRegisterInfo.inc -gen-register-info)
 tablegen(LLVM X43GenInstrInfo.inc -gen-instr-info)
 tablegen(LLVM X43GenSubtargetInfo.inc -gen-subtarget)
+tablegen(LLVM X43GenCallingConv.inc -gen-callingconv)
+tablegen(LLVM X43GenDAGISel.inc -gen-dag-isel)
+tablegen(LLVM X43GenAsmWriter.inc -gen-asm-writer)
 
 add_public_tablegen_target(X43CommonTableGen)
 
@@ -14,6 +17,9 @@ add_public_tablegen_target(X43CommonTableGen)
    X43RegisterInfo.cpp
    X43InstrInfo.cpp
    X43Subtarget.cpp
+   X43AsmPrinter.cpp
+   X43ISelLowering.cpp
+   X43FrameLowering.cpp
   
    LINK_COMPONENTS
    CodeGen
@@ -21,6 +27,8 @@ add_public_tablegen_target(X43CommonTableGen)
    Support
    Target
    X43Info
+   AsmPrinter
+   SelectionDAG
  
    ADD_TO_COMPONENT
    X43

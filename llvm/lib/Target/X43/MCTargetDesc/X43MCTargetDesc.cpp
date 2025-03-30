@@ -1,6 +1,7 @@
 #include "TargetInfo/X43TargetInfo.h"
 #include "X43InstPrinter.h"
 #include "X43MCAsmInfo.h"
+#include "llvm/CodeGen/TargetRegisterInfo.h"
 #include "llvm/MC/MCAsmInfo.h"
 #include "llvm/MC/MCDwarf.h"
 #include "llvm/MC/MCInstPrinter.h"
@@ -43,7 +44,7 @@ MCSubtargetInfo *createSubtargetInfo(const Triple &TT, StringRef CPU,
 MCAsmInfo *createMCAsmInfo(const MCRegisterInfo &MRI, const Triple &TT,
                            const MCTargetOptions &Options) {
   MCAsmInfo *MAI = new X43ELFMCAsmInfo(TT);
-  unsigned SP = MRI.getDwarfRegNum(X43::X30, true);
+  unsigned SP = MRI.getDwarfRegNum(X43::SP, true);
   MCCFIInstruction Inst = MCCFIInstruction::cfiDefCfa(nullptr, SP, 0);
   MAI->addInitialFrameState(Inst);
   return MAI;
