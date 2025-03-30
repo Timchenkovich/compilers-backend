@@ -1,5 +1,6 @@
 
 #include "TargetInfo/X43TargetInfo.h"
+#include "X43.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/CodeGen/AsmPrinter.h"
 #include "llvm/CodeGen/StackMaps.h"
@@ -16,6 +17,14 @@ public:
 public:
   llvm::StringRef getPassName() const override {
     return "X43 assembly printer";
+  }
+
+  void emitInstruction(const llvm::MachineInstr *MI)
+      override { // Do any auto-generated pseudo lowerings.
+
+    llvm::MCInst TmpInst;
+    if (!lowerX43MachineInstrToMCInst(MI, TmpInst, *this))
+      EmitToStreamer(*OutStreamer, TmpInst);
   }
 };
 

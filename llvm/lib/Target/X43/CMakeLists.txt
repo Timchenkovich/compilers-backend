@@ -20,6 +20,7 @@ add_public_tablegen_target(X43CommonTableGen)
    X43AsmPrinter.cpp
    X43ISelLowering.cpp
    X43FrameLowering.cpp
+   X43MCInstLower.cpp
   
    LINK_COMPONENTS
    CodeGen
