@@ -1,5 +1,5 @@
 def RetCC_X43 : CallingConv<[
-    CCIfType<[i64], CCAssignToReg<[X0, X1]>>
+    CCIfType<[i64], CCAssignToReg<[X1, X2]>>
 ]>;
 
 def CC_X43 : CallingConv<[

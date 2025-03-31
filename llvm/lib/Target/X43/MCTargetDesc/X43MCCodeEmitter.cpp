@@ -62,7 +62,17 @@ void X43MCCodeEmitter::encodeInstruction(const MCInst &MI,
                                          SmallVectorImpl<MCFixup> &Fixups,
                                          const MCSubtargetInfo &STI) const {
   unsigned Bits = getBinaryCodeForInstr(MI, Fixups, STI);
+
   support::endian::write(CB, Bits, llvm::endianness::little);
+
+  // currently it means we have full-sized operand which is not encoded in
+  // instruction
+  if (MI.getNumOperands() > 1) {
+    auto Op = MI.getOperand(1);
+    assert(Op.isImm() && "Expected i64.");
+
+    support::endian::write(CB, Op.getImm(), llvm::endianness::little);
+  }
 }
 
 unsigned X43MCCodeEmitter::getMachineOpValue(const MCInst &MI,
