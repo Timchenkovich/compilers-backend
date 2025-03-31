@@ -29,7 +29,6 @@ namespace {
 class X43DAGToDAGISel : public SelectionDAGISel {
 
 public:
-  static char ID;
   X43DAGToDAGISel() = delete;
   explicit X43DAGToDAGISel(X43TargetMachine &TM, CodeGenOptLevel OptLevel)
       : SelectionDAGISel(TM, OptLevel) {}

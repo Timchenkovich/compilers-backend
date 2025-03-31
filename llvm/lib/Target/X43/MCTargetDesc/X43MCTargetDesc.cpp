@@ -34,7 +34,7 @@ MCInstrInfo *createInstructionInfo() {
 
 MCRegisterInfo *createRegisterInfo(const Triple &triple) {
   MCRegisterInfo *registerInfo = new MCRegisterInfo();
-  InitX43MCRegisterInfo(registerInfo, X43::X0);
+  InitX43MCRegisterInfo(registerInfo, X43::R);
   return registerInfo;
 }
 
@@ -69,4 +69,5 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeX43TargetMC() {
   TargetRegistry::RegisterMCSubtargetInfo(target, createSubtargetInfo);
   TargetRegistry::RegisterMCInstPrinter(target, createInstPrinter);
   TargetRegistry::RegisterMCCodeEmitter(target, createX43MCCodeEmitter);
+  TargetRegistry::RegisterMCAsmBackend(target, createX43AsmBackend);
 }

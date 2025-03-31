@@ -3,6 +3,8 @@ add_llvm_component_library(LLVMX43Desc
    X43MCAsmInfo.cpp
    X43InstPrinter.cpp
    X43MCCodeEmitter.cpp
+   X43AsmBackend.cpp
+   X43ELFObjectWriter.cpp
  
    LINK_COMPONENTS
    MC

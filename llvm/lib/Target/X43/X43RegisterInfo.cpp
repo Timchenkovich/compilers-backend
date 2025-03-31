@@ -9,7 +9,7 @@
 #include "X43GenRegisterInfo.inc"
 
 namespace llvm {
-X43RegisterInfo::X43RegisterInfo() : llvm::X43GenRegisterInfo(llvm::X43::X0) {}
+X43RegisterInfo::X43RegisterInfo() : llvm::X43GenRegisterInfo(llvm::X43::R) {}
 const MCPhysReg *
 X43RegisterInfo::getCalleeSavedRegs(const MachineFunction *MF) const {
   return CSR_X43_SaveList;
@@ -19,7 +19,7 @@ BitVector X43RegisterInfo::getReservedRegs(const MachineFunction &MF) const {
   BitVector reserved(getNumRegs());
   reserved.set(X43::FP);
   reserved.set(X43::SP);
-  reserved.set(X43::X0);
+  reserved.set(X43::R);
   return reserved;
 }
 
