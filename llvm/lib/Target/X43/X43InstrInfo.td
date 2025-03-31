@@ -7,8 +7,8 @@ class SImmAsmOperand<int width> : AsmOperandClass {
  }
 
 def simm64 : Operand<i64>, ImmLeaf<i64, [{return isInt<64>(Imm);}]> {
-   let ParserMatchClass = SImmAsmOperand<16>;
-   let EncoderMethod = "getImmOpValue";
+   let ParserMatchClass = SImmAsmOperand<64>;
+   let EncoderMethod = "getSImm64OpValue";
    let DecoderMethod = "decodeSImmOperand<64>";
    let MCOperandPredicate = [{
      int64_t Imm;

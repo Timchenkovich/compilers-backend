@@ -1,6 +1,11 @@
 #pragma once
 
-namespace llvm {}
+#include "llvm/MC/MCCodeEmitter.h"
+#include "llvm/MC/MCContext.h"
+#include "llvm/MC/MCInstrInfo.h"
+namespace llvm {
+MCCodeEmitter *createX43MCCodeEmitter(const MCInstrInfo &MCII, MCContext &Ctx);
+}
 
 #define GET_REGINFO_ENUM
 #include "X43GenRegisterInfo.inc"

@@ -8,6 +8,7 @@ tablegen(LLVM X43GenSubtargetInfo.inc -gen-subtarget)
 tablegen(LLVM X43GenCallingConv.inc -gen-callingconv)
 tablegen(LLVM X43GenDAGISel.inc -gen-dag-isel)
 tablegen(LLVM X43GenAsmWriter.inc -gen-asm-writer)
+tablegen(LLVM X43GenMCCodeEmitter.inc -gen-emitter)
 
 add_public_tablegen_target(X43CommonTableGen)
 

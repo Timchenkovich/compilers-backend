@@ -1,6 +1,7 @@
 #pragma once
 
 #include "X43TargetMachine.h"
+#include "llvm/MC/MCCodeEmitter.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Target/TargetMachine.h"
 

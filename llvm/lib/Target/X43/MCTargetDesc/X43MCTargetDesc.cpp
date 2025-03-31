@@ -1,5 +1,6 @@
 #include "X43MCTargetDesc.h"
 #include "TargetInfo/X43TargetInfo.h"
+#include "X43.h"
 #include "X43Info.h"
 #include "X43InstPrinter.h"
 #include "X43MCAsmInfo.h"
@@ -67,4 +68,5 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeX43TargetMC() {
   TargetRegistry::RegisterMCInstrInfo(target, createInstructionInfo);
   TargetRegistry::RegisterMCSubtargetInfo(target, createSubtargetInfo);
   TargetRegistry::RegisterMCInstPrinter(target, createInstPrinter);
+  TargetRegistry::RegisterMCCodeEmitter(target, createX43MCCodeEmitter);
 }
