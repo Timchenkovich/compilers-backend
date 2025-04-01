@@ -1,7 +1,7 @@
 #include "MCTargetDesc/X43MCTargetDesc.h"
 #include "X43.h"
+#include "X43Info.h"
 #include "llvm/ADT/SmallVector.h"
-#include "llvm/ADT/Statistic.h"
 #include "llvm/MC/MCAsmInfo.h"
 #include "llvm/MC/MCCodeEmitter.h"
 #include "llvm/MC/MCContext.h"
@@ -14,11 +14,8 @@
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/Support/Casting.h"
-#include "llvm/Support/Endian.h"
 #include "llvm/Support/EndianStream.h"
 #include "llvm/Support/ErrorHandling.h"
-#include "llvm/Support/raw_ostream.h"
-#include "llvm/TargetParser/SubtargetFeature.h"
 #include <cassert>
 #include <cstdint>
 
@@ -27,10 +24,12 @@ using namespace llvm;
 namespace {
 
 class X43MCCodeEmitter : public MCCodeEmitter {
+  MCInstrInfo MCII;
   MCContext &Ctx;
 
 public:
-  X43MCCodeEmitter(const MCInstrInfo &, MCContext &ctx) : Ctx(ctx) {}
+  X43MCCodeEmitter(const MCInstrInfo &mcii, MCContext &ctx)
+      : MCII(mcii), Ctx(ctx) {}
   X43MCCodeEmitter(const X43MCCodeEmitter &) = delete;
   X43MCCodeEmitter &operator=(const X43MCCodeEmitter &) = delete;
   ~X43MCCodeEmitter() override = default;
@@ -65,13 +64,20 @@ void X43MCCodeEmitter::encodeInstruction(const MCInst &MI,
 
   support::endian::write(CB, Bits, llvm::endianness::little);
 
-  // currently it means we have full-sized operand which is not encoded in
-  // instruction
-  if (MI.getNumOperands() > 1) {
+  auto Info = MCII.get(MI.getOpcode());
+  auto Format = Info.TSFlags & X43Form::FormatMask;
+
+  switch (Format) {
+  case X43Form::RI64: {
+    // print immediate
     auto Op = MI.getOperand(1);
     assert(Op.isImm() && "Expected i64.");
 
     support::endian::write(CB, Op.getImm(), llvm::endianness::little);
+    break;
+  }
+  default: {
+  }
   }
 }
 

@@ -32,7 +32,7 @@ def Call : X43Short<0x0, (outs), (ins GPR:$dst), "call $dst", [(call GPR:$dst)]>
 
 
 let isAsCheapAsAMove = 1, isReMaterializable = 1 in
- def MovRImm : X43Reg<0x2, (outs GPR:$reg), (ins simm64:$imm),
+ def MovRI64 : X43RI64<0x2, (outs GPR:$reg), (ins simm64:$imm),
                       "mov $reg $imm",
                       [(set GPR:$reg, simm64:$imm)]> {
 }
