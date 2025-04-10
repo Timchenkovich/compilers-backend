@@ -4,6 +4,7 @@
 #include "X43RegisterInfo.h"
 #include "X43Subtarget.h"
 #include "llvm/CodeGen/CallingConvLower.h"
+#include "llvm/CodeGen/ISDOpcodes.h"
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/SelectionDAGNodes.h"
 #include "llvm/CodeGen/TargetLowering.h"
@@ -21,7 +22,9 @@ namespace llvm {
 X43TargetLowering::X43TargetLowering(const TargetMachine &TM,
                                      const X43Subtarget &subtarget)
     : TargetLowering(TM), Subtarget(subtarget) {
+  addRegisterClass(MVT::i32, &X43::GPRHRegClass);
   addRegisterClass(MVT::i64, &X43::GPRRegClass);
+
   computeRegisterProperties(subtarget.getRegisterInfo());
 
   setStackPointerRegisterToSaveRestore(X43::SP);
@@ -30,9 +33,13 @@ X43TargetLowering::X43TargetLowering(const TargetMachine &TM,
   setOperationAction(ISD::MUL, MVT::i64, Legal);
 
   setOperationAction(ISD::LOAD, MVT::i64, Legal);
+
+  setOperationAction(ISD::STORE, MVT::i32, Legal);
   setOperationAction(ISD::STORE, MVT::i64, Legal);
 
   setOperationAction(ISD::Constant, MVT::i64, Legal);
+
+  setOperationAction(ISD::SIGN_EXTEND_INREG, MVT::i32, Legal);
 }
 
 SDValue

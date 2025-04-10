@@ -76,6 +76,16 @@ void X43MCCodeEmitter::encodeInstruction(const MCInst &MI,
     support::endian::write(CB, Op.getImm(), llvm::endianness::little);
     break;
   }
+  case X43Form::RI32: {
+    // print immediate
+    auto Op = MI.getOperand(1);
+    assert(Op.isImm() && static_cast<uint32_t>(Op.getImm()) == Op.getImm() &&
+           "Expected i32.");
+
+    support::endian::write(CB, static_cast<uint32_t>(Op.getImm()),
+                           llvm::endianness::little);
+    break;
+  }
   default: {
   }
   }
